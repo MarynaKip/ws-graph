@@ -1,0 +1,22 @@
+.App {
+  text-align: center;
+}
+
+.container {
+  padding-right: 300px;
+  padding-left: 300px;
+}
+
+.indicators-section {
+  padding-top: 60px;
+  padding-bottom: 70px;
+}
+
+.indicator_list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.indicator_item {
+  width: calc((100% - (30px * 1)) / 2);
+}
