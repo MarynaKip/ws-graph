@@ -14,7 +14,6 @@ const useStyles = createUseStyles({
 
 const Indicator = (props) => {
   const classes = useStyles();
-  console.log('props', props);
   const { id, temp } = props
   return (
     <div className={classes.indicator_rectangle}>

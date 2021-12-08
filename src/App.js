@@ -15,10 +15,9 @@ function App() {
   websocket.onmessage = (event) => {
     const data = JSON.parse(event.data);
     SetTempObj({
-      1: [...tempObj[1].filter(item => ((Date.now() - 5000)) < item.timeStamp), { 'tempData': data[0].temperature, 'timeStamp': Date.now() }],
-      2: [...tempObj[2].filter(item => ((Date.now() - 5000)) < item.timeStamp), { 'tempData': data[1].temperature, 'timeStamp': Date.now() }],
+      1: [...tempObj[1].filter(item => ((Date.now() - 300000)) < item.timeStamp), { 'tempData': data[0].temperature, 'timeStamp': Date.now() }],
+      2: [...tempObj[2].filter(item => ((Date.now() - 300000)) < item.timeStamp), { 'tempData': data[1].temperature, 'timeStamp': Date.now() }],
     });
-    // console.log("tempObj", tempObj);
   };
 
 
@@ -37,11 +36,6 @@ function App() {
   const temp2Obj = tempObj[2][tempObj[2].length - 1];
   const temp1 = temp1Obj?.tempData
   const temp2 = temp2Obj?.tempData
-
-  console.log("temp1Obj", temp1Obj);
-  console.log("temp1Obj", temp1Obj);
-  console.log("temp1", temp1);
-  console.log("temp2", temp2);
 
   return (
     <div className="App">
