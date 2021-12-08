@@ -14,18 +14,21 @@ const useStyles = createUseStyles({
 
 const Indicator = (props) => {
   const classes = useStyles();
-
+  console.log('props', props);
+  const { id, temp } = props
   return (
     <div className={classes.indicator_rectangle}>
-      <h4>ID {props.id}</h4>
-      <p>Temp: {props.temp} C</p>
+      <h4>ID {id}</h4>
+      <p>Temp: {temp} C</p>
     </div>
   );
 };
 
 Indicator.propTypes = {
-  temp: PropTypes.number.isRequired,
-  id: PropTypes.number.isRequired,
+  props: PropTypes.shape({
+    temp: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired
+  })
 };
 
 export default Indicator;

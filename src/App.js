@@ -11,22 +11,17 @@ const websocket = new WebSocket("ws://localhost:8999");
 
 function App() {
   const [tempObj, SetTempObj] = useState({ 1: [], 2: [] });
-  // setTimeout(() => {
-  //   SetTempObj({
-  //     1: [...tempObj[1].splice(0, 1)],
-  //     2: [...tempObj[2].splice(0, 1)],
-  //   });
-  // }, 3000);
+
   websocket.onmessage = (event) => {
     const data = JSON.parse(event.data);
-
     SetTempObj({
-      1: [...tempObj[1], data[0]["temperature"]],
-      2: [...tempObj[2], data[1].temperature],
+      1: [...tempObj[1].filter(item => ((Date.now() - 5000)) < item.timeStamp), { 'tempData': data[0].temperature, 'timeStamp': Date.now() }],
+      2: [...tempObj[2].filter(item => ((Date.now() - 5000)) < item.timeStamp), { 'tempData': data[1].temperature, 'timeStamp': Date.now() }],
     });
-
     // console.log("tempObj", tempObj);
   };
+
+
 
   const ConnectNotify = () => toast("Websocket is connected");
   const DisconnectNotify = () => toast("Websocket is disconnected");
@@ -37,20 +32,16 @@ function App() {
   websocket.onclose = (e) => {
     DisconnectNotify();
   };
-  useEffect(() => {
-    // console.log("did update");
-    // console.log("temp1", temp1);
-    // console.log("temp2", temp2);
-  });
 
-  const temp1 = tempObj[1][tempObj[1].length - 1];
-  const temp2 = tempObj[2][tempObj[2].length - 1];
-  // let temp1ForGraph;
-  // let temp2ForGraph;
-  // if (temp1 <= 100 && temp2 <= 100) {
-  //   temp1ForGraph = temp1;
-  //   temp2ForGraph = temp2;
-  // }
+  const temp1Obj = tempObj[1][tempObj[1].length - 1];
+  const temp2Obj = tempObj[2][tempObj[2].length - 1];
+  const temp1 = temp1Obj?.tempData
+  const temp2 = temp2Obj?.tempData
+
+  console.log("temp1Obj", temp1Obj);
+  console.log("temp1Obj", temp1Obj);
+  console.log("temp1", temp1);
+  console.log("temp2", temp2);
 
   return (
     <div className="App">

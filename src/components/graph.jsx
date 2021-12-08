@@ -19,24 +19,24 @@ const Graph = ({ state }) => {
 
   const classes = useStyles();
 
-  const updateGraph = (arr) => {
-    let x = 0;
-    const canv = document.getElementById("canvas");
-    const ctx = canv.getContext("2d");
+  // const updateGraph = (arr) => {
+  //   let x = 0;
+  //   const canv = document.getElementById("canvas");
+  //   const ctx = canv.getContext("2d");
 
-    // canv.width = window.innerWidth;
-    // canv.height = window.innerHeight;
-    ctx.moveTo(0, 0);
-    arr.forEach((el) => {
-      return ctx.lineTo(x, el);
-    });
+  //   // canv.width = window.innerWidth;
+  //   // canv.height = window.innerHeight;
+  //   ctx.moveTo(0, 0);
+  //   arr.forEach((el) => {
+  //     return ctx.lineTo(x, el);
+  //   });
 
-    ctx.stroke();
-  };
-  useEffect(() => {
-    updateGraph(state[1]);
-    updateGraph(state[2]);
-  });
+  //   ctx.stroke();
+  // };
+  // useEffect(() => {
+  //   updateGraph(state[1]);
+  //   updateGraph(state[2]);
+  // });
 
   return (
     <canvas id="canvas" className={classes.canvas}></canvas>
